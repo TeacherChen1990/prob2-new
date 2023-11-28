@@ -1,3 +1,3 @@
 :_start
-. "Hello,world"
+. "HELLO,WORLD"
 ;

@@ -1,7 +1,7 @@
 
 * forth | stack | neum | hw | instr | binary | trap | mem | pstr | prob2 | spi
 
-## asm编程设计
+## forth编程设计
 * 指令本身不区分大小写，但是符号声明除外。例如 ld #1 等于 LD #1
 * 第一个函数是_start，即输入.
 * 指令按顺序执行。指令操作释义如下：

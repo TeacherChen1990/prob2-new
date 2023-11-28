@@ -72,7 +72,9 @@ class DataPath:
         self.memory = [Cell() for _ in range(size)]
         self.stack = [0] * 1024
         self.size = size
+        # 输入缓存
         self.input_buffer = Buffer(1024)
+        # 输出缓存
         self.output_buffer = Buffer(1024)
         self.do_position = -1
         self.loop_position = -1
@@ -271,7 +273,7 @@ class CPU:
         self.fun = {}
         # 变量集合
         self.var = {}
-        # 指令索引集合
+        # 指令存储器
         self.position = []
         self.datapath = datapath
         self.tick = 0
@@ -620,15 +622,16 @@ class CPU:
                 break
         print()
         if output_result:
+            print(result)
             return result.strip()
         else:
-            return str(self.datapath.get_value_register("AC"))
-
-
-
+            result = (self.datapath.get_value_register("AC"))
+            print(result)
+            return result
 
 
 def start(sourcefile, inputfile):
+    """ 执行算法 """
     program = read_code(sourcefile)
     datapath = DataPath(1024, inputfile)
     cpu = CPU(program=program, datapath=datapath)

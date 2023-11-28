@@ -32,7 +32,7 @@ class MachineTest(unittest.TestCase):
         translator.translate("./forth/prob2.fth", "./forth/target")
         result = machine.start("./forth/target", '')
 
-        print("问题2答案:" + result)
+        print("问题2答案:" + str(result))
         self.assertEqual(int(result), 4613732)
 
 if __name__ == '__main__':

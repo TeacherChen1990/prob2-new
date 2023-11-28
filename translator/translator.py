@@ -4,6 +4,7 @@ from computer.register import get_ins, NO_ARGUMENT
 
 variable_start = "variable "
 
+
 def check_label(target: str) -> bool:
     """ 检查循环标签 """
     # 在需要时动态添加其他标签
@@ -15,12 +16,14 @@ def check_fun(target: str) -> bool:
     """ 检查主函数 """
     return target.strip() == ":_START"
 
+
 def check_variable(target: str) -> bool:
     """ 检查变量 """
     return target.startswith("VARIABLE ")
 
-def read_asm_file(source_name):
-    """ 读取asm程序源码 """
+
+def read_forth_file(source_name):
+    """ 读取forth程序源码 """
     result, last_fun = "", ""
     variable, function_point, label_in_fun = dict(), dict(), dict()
     index, instruction_index, loop_index = 0, 0, 0
@@ -185,12 +188,12 @@ def pre_translation(line: str) -> str:
 def translate(source_name: str, target_name: str):
     """
     翻译：
-    1、获取asm文件内容
+    1、获取forth文件内容翻译指令
     2、翻译内容后写入指定文件
     @param source_name 源文件
     @param target_name 数据写入文件
     """
-    result, function_point, label_in_fun, variable, instruction_index = read_asm_file(source_name)
+    result, function_point, label_in_fun, variable, instruction_index = read_forth_file(source_name)
     write_translate(target_name, result, function_point, label_in_fun, variable, instruction_index)
 
 

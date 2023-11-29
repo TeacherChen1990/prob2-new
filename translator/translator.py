@@ -1,6 +1,6 @@
 import sys
 import re
-from computer.register import get_ins, NO_ARGUMENT
+from machine.register import get_ins, NO_ARGUMENT
 
 variable_start = "variable "
 
@@ -140,9 +140,6 @@ def check_string(re_exp: str, target: str) -> bool:
     return bool(re.search(re_exp, target))
 
 
-
-
-
 def read_variable(line: str) -> tuple[str, str]:
     """  读取变量  """
     # assert any(check_string(pattern, line) for pattern in [
@@ -151,10 +148,10 @@ def read_variable(line: str) -> tuple[str, str]:
     #     "^.*: *\".*\" *, *[1-9]+[0-9]* *$",
     #     "^.*: *\".*\" *$"
     # ]), f"Illegal variable {line}"
-    vars = line.split(" ")
-    key = vars[1]
-    value = vars[2]
-    key = re.findall("\S*", key)[0]
+    var = line.split(" ")
+    key = var[1]
+    value = var[2]
+    key = re.findall("\\S*", key)[0]
     if check_string("^(0|[1-9][0-9]*)$", value):  # Numeric
         value = re.findall("^(0|[1-9][0-9]*)$", value)[0]
     elif check_string("^.*: *0 *$", line):
@@ -176,7 +173,7 @@ def pre_translation(line: str) -> str:
     2、去掉";"之后的内容(仅作为注释使用)
     3、去掉制表符(\t)和换行符(\n)
     """
-    if line.startswith("\.") is False:
+    if line.startswith("\\.") is False:
         line = line.upper()
     line = re.sub(r"\t+", "", line)
     line = re.sub(r"\n", "", line)
@@ -223,9 +220,6 @@ def write_translate(target_name: str, result, function_point, label_in_fun, vari
             while "" in term:
                 term.remove("")
             print(term)
-
-
-
 
 
 if __name__ == "__main__":

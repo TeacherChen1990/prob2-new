@@ -1,6 +1,6 @@
 import re
-from computer.register import *
-from computer.mem_char import *
+from machine.register import *
+from machine.mem_char import *
 
 """ 标识位 """
 N = 1
